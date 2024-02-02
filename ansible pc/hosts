@@ -51,7 +51,7 @@
 [linux:vars]
 
 ansible_user=mespinoza
-ansible_password=Mundial2023
+ansible_password=password
 
 # Estos eran para Windows supuestamente 
 #192.168.119.200 ansible_user=lmessi ansible_password=Mundial2022
@@ -64,7 +64,7 @@ ansible_password=Mundial2023
 
 [windows:vars]
 ansible_user=ansible
-ansible_password=Test123@
+ansible_password=password
 ansible_port=5986
 #ansible_port=5985    esto era para probar, pero igual arroja error
 ansible_connection=winrm
