@@ -1,0 +1,11 @@
+---
+- name: Descargar archivo en ruta especifica
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Descargar el instalador de WinRAR en el escritorio
+      win_get_url:
+        url: https://d.winrar.es/d/103z1703093057/cBP8tVJP1QbYlvbBKXnHYg/winrar-x64-624es.exe
+        dest: C:\Users\ansible\Desktop
+#Este playbook para este ejemplo descargara un archivo desde una direccion url y lo alojara en el Escritorio.
+# Obviamente se puede editar la URL y la Ruta.        

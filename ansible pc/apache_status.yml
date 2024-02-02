@@ -1,0 +1,9 @@
+---
+- name: Verificar estado de Apache en servidores Ubuntu
+  hosts: linux
+  become: true
+  tasks:
+    - name: Verificar si Apache está instalado
+      command: dpkg -s apache2
+      register: apache_status
+      ignore_errors: true

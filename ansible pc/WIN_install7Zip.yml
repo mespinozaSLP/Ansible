@@ -1,0 +1,20 @@
+---
+- name: Instalar 7zip en Windows
+  hosts: win
+  gather_facts: false  # No es necesario recopilar información sobre el sistema
+
+  tasks:
+    - name: Descargar el instalador de 7zip
+      win_shell: |
+        $url = 'https://www.7-zip.org/a/7z1900-x64.exe'
+        $output = 'C:\temp\7z_installer.exe'
+        Invoke-WebRequest -Uri $url -OutFile $output
+      args:
+        executable: powershell.exe
+
+    - name: Instalar 7zip
+      win_shell: |
+        Start-Process -Wait -FilePath 'C:\temp\7z_installer.exe' -ArgumentList '/S'
+      args:
+        executable: powershell.exe
+# Este playbook descargara el instalador de "7Zip" y luego lo instalara a traves de Powershell directamente de manera "silenciosa".        

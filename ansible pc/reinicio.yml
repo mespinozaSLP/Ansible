@@ -1,0 +1,12 @@
+---
+- name: Reiniciar servidores Linux
+  hosts: linux
+  gather_facts: True
+
+  tasks:
+    - name: Reiniciar servidor
+      reboot:
+        reboot_timeout: 300
+        test_command: uptime
+      become: true
+      become_method: sudo

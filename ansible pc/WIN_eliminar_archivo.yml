@@ -1,0 +1,10 @@
+---
+- name: Eliminar archivo en equipo
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Eliminar arhivo en ruta especifica en Escritorio -> "datos.txt"
+      win_file:
+        path: C:\Users\ansible\Desktop\datos.txt
+        state: absent
+# Este playbook eliminara el archivo llamado "datos.txt" del Escritorio.

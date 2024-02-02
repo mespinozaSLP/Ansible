@@ -1,0 +1,11 @@
+---
+- name: Reiniciar equipos Windows inmediatamente
+  hosts: win
+  gather_facts: false
+
+  tasks:
+    - name: Reiniciar el equipo
+      win_reboot:
+        reboot_timeout: 0
+        #falta editar cosas en el equipo de destino, el playbook esta bien
+#Playbook para reiniciar inmediatamente el equipo windows.        

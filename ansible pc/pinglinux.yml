@@ -1,0 +1,6 @@
+---
+  - name: Hacer ping a Servidores Ubuntu
+    hosts: linux
+    tasks:
+      - name: Comprobar conectividad
+        ping:

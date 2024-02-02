@@ -1,0 +1,13 @@
+---
+- name: Instalar VLC en Windows 10
+  hosts: win
+  gather_facts: true
+  tasks:
+    - name: Instalar Chocolatey
+      win_shell: |
+        Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+    - name: Instalar VLC con Chocolatey
+      win_shell: choco install vlc -y
+ #Este playbook instalara Chocolatey mediante Powershell y luego VLC a traves de los paquetes de Chocolatey.
+ # Importante cumplir los requisitos previos para instalar Chocolatey antes de ejecutar este playbook.     

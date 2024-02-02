@@ -1,0 +1,9 @@
+---
+- name: Ping en equipos Windows
+  hosts: win
+  become: false
+  gather_facts: false
+  tasks:
+    - name: Ejecutar comando de ping
+      win_ping:
+# Playbook para hacer ping a equipos windows del grupo "win"

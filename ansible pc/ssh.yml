@@ -1,0 +1,15 @@
+---
+- name: Verificar estado del SSH
+  hosts: linux
+  gather_facts: True
+
+  tasks:
+    - name: Verificar estado del SSH
+      systemd:
+        name: sshd
+        state: started
+      register: ssh_status
+
+    - name: Mostrar estado del SSH
+      debug:
+        msg: "El servicio SSH está -> {{ ssh_status.state }}"
