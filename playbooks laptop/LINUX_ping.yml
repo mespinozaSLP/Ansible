@@ -1,0 +1,7 @@
+---
+- name: Hacer ping a servidores Linux
+  hosts: linux
+  gather_facts: false
+  tasks:
+    - name: Verificar conectividad
+      ping:

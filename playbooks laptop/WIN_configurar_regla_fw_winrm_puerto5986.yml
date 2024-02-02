@@ -1,0 +1,8 @@
+---
+- name: Configurar regla del Firewall para WinRM
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Crear regla del Firewall para WinRM
+      win_shell: |
+        netsh advfirewall firewall add rule name="Windows Remote Management (HTTPS-In)" dir=in action=allow protocol=TCP localport=5986

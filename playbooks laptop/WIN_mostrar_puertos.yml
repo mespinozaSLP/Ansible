@@ -1,0 +1,12 @@
+---
+- name: Listar puertos abiertos en equipos Windows
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Obtener lista de puertos abiertos
+      win_shell: Get-NetTCPConnection | Where-Object {$_.State -eq 'Listen'} | Select-Object LocalAddress, LocalPort
+      register: puertos_abiertos
+
+    - name: Mostrar puertos abiertos
+      debug:
+        var: puertos_abiertos.stdout_lines

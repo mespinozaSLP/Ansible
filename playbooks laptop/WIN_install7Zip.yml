@@ -1,0 +1,12 @@
+---
+- name: Instalar 7-Zip en Windows con Chocolatey
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Instalar Chocolatey
+      win_shell: Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+    - name: Instalar 7-Zip con Chocolatey
+      win_chocolatey:
+        name: 7zip
+        state: present

@@ -1,0 +1,12 @@
+---
+- name: Desinstalar VLC en Windows
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Obtener el nombre del programa VLC
+      win_shell: Get-WmiObject -Query "SELECT * FROM Win32_Product WHERE Name LIKE 'VLC media player%'" | Select-Object -ExpandProperty Name
+      register: vlc_program_name
+
+    - name: Desinstalar VLC
+      win_shell: Start-Process -FilePath "msiexec.exe" -ArgumentList "/x {{ vlc_program_name.stdout }} /quiet /norestart" -Wait
+      when: vlc_program_name.stdout is defined

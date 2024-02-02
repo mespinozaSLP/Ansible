@@ -1,0 +1,26 @@
+---
+- name: Instalar WinRAR en equipos Windows
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Crear carpeta Temp en "C:\Temp"
+      win_file:
+         path: C:\Temp
+         state: directory
+
+    - name: Descargar el instalador de WinRAR en C:\Temp
+      win_get_url:
+        url: https://d.winrar.es/d/101z1706222977/sqi88q5EAcUTDaA5XXlR7g/winrar-x64-624.exe
+        #url: https://d.winrar.es/d/103z1706220594/trvuCeEqVk4QeO_pyb6mvA/winrar-x64-624es.exe
+        dest: C:\Temp\WinRAR.exe
+
+    - name: Instalar WinRAR
+      win_shell: Start-Process -FilePath C:\Temp\WinRAR.exe -ArgumentList '/S' -Wait
+      args:
+        executable: powershell.exe
+
+    - name: Eliminar el instalador descargado en C:\Temp
+      win_file:
+        path: C:\Temp\WinRAR.exe
+        state: absent
+# Este playbook descargara Winrar, luego lo instalara de manera "silenciosa" y finalmente eliminara su instalarador.        

@@ -1,0 +1,9 @@
+---
+- name: Instalar VLC en Windows
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Instalar VLC usando Chocolatey
+      win_chocolatey:
+        name: vlc
+        state: present

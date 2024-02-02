@@ -1,0 +1,12 @@
+---
+- name: Mostrar programas instalados en Windows
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Obtener lista de programas instalados
+      win_shell: Get-WmiObject -Query "SELECT * FROM Win32_Product" | Select-Object -Property Name, Version, Vendor
+      register: installed_programs
+
+    - name: Mostrar lista de programas instalados
+      debug:
+        var: installed_programs.stdout_lines

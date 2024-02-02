@@ -1,0 +1,19 @@
+---
+- name: Instalar parches de Windows
+  hosts: win
+  gather_facts: true
+  become_method: runas # Run as (Administrator) o Ejecutar como Administrador
+
+  tasks:
+    - name: Actualizar lista de actualizaciones
+      win_updates:
+        category_names:
+          - SecurityUpdates
+          - UpdateRollups
+          - CriticalUpdates
+        state: downloaded
+      register: update_result
+
+    - name: Verificar si hay actualizaciones pendientes
+      debug:
+        var: update_result

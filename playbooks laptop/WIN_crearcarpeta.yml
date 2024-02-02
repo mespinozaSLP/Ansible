@@ -1,0 +1,10 @@
+---
+- name: Crear carpeta en Windows
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Crear carpeta en el directorio C:\ejemplo
+      win_file:
+        path: C:\ejemplo
+        state: directory
+#Crea una carpeta en una ruta especifica

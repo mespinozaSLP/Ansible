@@ -1,0 +1,11 @@
+---
+- name: Reiniciar equipo Windows
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Reiniciar el sistema
+      win_reboot:
+        reboot_timeout: 300  # ajusta el tiempo de espera según tus necesidades
+      async: 0
+      poll: 0
+      register: reboot_result
