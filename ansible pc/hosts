@@ -54,8 +54,8 @@ ansible_user=mespinoza
 ansible_password=password
 
 # Estos eran para Windows supuestamente 
-#192.168.119.200 ansible_user=lmessi ansible_password=Mundial2022
-#192.168.119.128 ansible_user=mvirtual ansible_password=qwerty
+#192.168.119.200 ansible_user=lmessi ansible_password=password1
+#192.168.119.128 ansible_user=mvirtual ansible_password=password2
 
 
 [windows]
@@ -64,9 +64,9 @@ ansible_password=password
 
 [windows:vars]
 ansible_user=ansible
-ansible_password=password
+ansible_password=password1
 ansible_port=5986
-#ansible_port=5985    esto era para probar, pero igual arroja error
+#ansible_port=5985    
 ansible_connection=winrm
 ansible_winrm_server_cert_validation=ignore
 ansible_winrm_transport=basic
