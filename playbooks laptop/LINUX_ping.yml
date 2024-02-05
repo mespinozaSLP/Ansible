@@ -1,6 +1,6 @@
 ---
 - name: Hacer ping a servidores Linux
-  hosts: linux
+  hosts: all  #linux es un grupo
   gather_facts: true
   tasks:
     - name: Verificar conectividad
