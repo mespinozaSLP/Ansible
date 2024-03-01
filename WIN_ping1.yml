@@ -1,0 +1,6 @@
+---
+- name: Ping en equipos Windows
+  hosts: all
+    tasks:
+    - name: Ejecutar comando de ping
+      win_ping:
