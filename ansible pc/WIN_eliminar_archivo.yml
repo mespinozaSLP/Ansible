@@ -1,6 +1,6 @@
 ---
 - name: Eliminar archivo en equipo
-  hosts: win
+  hosts: windows
   gather_facts: false
   tasks:
     - name: Eliminar arhivo en ruta especifica en Escritorio -> "datos.txt"
