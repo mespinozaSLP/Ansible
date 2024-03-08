@@ -1,6 +1,6 @@
 ---
 - name: Descargar archivo en ruta especifica
-  hosts: win
+  hosts: windows
   gather_facts: false
   tasks:
     - name: Descargar el instalador de WinRAR en el escritorio
