@@ -1,6 +1,6 @@
 ---
 - name: Trabajando con Windows 
-  hosts: windows
+  hosts: win
   tasks:
     - name: Crear un directorio
       win_file:
