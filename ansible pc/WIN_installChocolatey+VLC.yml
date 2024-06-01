@@ -1,7 +1,7 @@
 ---
 - name: Instalar VLC en Windows 10
   hosts: win
-  gather_facts: true
+  gather_facts: false
   tasks:
     - name: Instalar Chocolatey
       win_shell: |
