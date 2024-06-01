@@ -1,7 +1,6 @@
 ---
 - name: Install .NET Framework 4.5.2
   hosts: win
-  gather_facts: false
   tasks:
     - name: Ensure destination directory for .NET installer exists
       win_file:
