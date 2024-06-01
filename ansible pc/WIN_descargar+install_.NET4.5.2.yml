@@ -1,0 +1,24 @@
+---
+- name: Install .NET Framework 4.5.2
+  hosts: win
+  tasks:
+    - name: Ensure destination directory for .NET installer exists
+      win_file:
+        path: C:\temp
+        state: directory
+
+    - name: Download .NET Framework 4.5.2 installer
+      win_get_url:
+        url: https://download.microsoft.com/download/1/5/8/1583A1C4-CA96-4D38-A9E3-3A4B2D5FBD27/NDP452-KB2901907-x86-x64-AllOS-ENU.exe
+        dest: C:\temp\NDP452-KB2901907-x86-x64-AllOS-ENU.exe
+
+    - name: Install .NET Framework 4.5.2
+      win_package:
+        path: C:\temp\NDP452-KB2901907-x86-x64-AllOS-ENU.exe
+        arguments: /quiet /norestart
+        state: present
+
+    - name: Remove .NET installer
+      win_file:
+        path: C:\temp\NDP452-KB2901907-x86-x64-AllOS-ENU.exe
+        state: absent
