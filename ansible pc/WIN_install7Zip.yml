@@ -1,20 +1,22 @@
 ---
-- name: Instalar 7zip en Windows
+- name: Install .NET Framework 4.5.2
   hosts: win
-  gather_facts: false  # No es necesario recopilar información sobre el sistema
-
   tasks:
-    - name: Descargar el instalador de 7zip
-      win_shell: |
-        $url = 'https://www.7-zip.org/a/7z1900-x64.exe'
-        $output = 'C:\temp\7z_installer.exe'
-        Invoke-WebRequest -Uri $url -OutFile $output
-      args:
-        executable: powershell.exe
+    - name: Ensure destination directory for .NET installer exists
+      win_file:
+        path: C:\temp
+        state: directory
 
-    - name: Instalar 7zip
+    - name: Download .NET Framework 4.5.2 installer
+      win_get_url:
+        url: https://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe
+        dest: C:\temp
+
+    - name: Install .NET Framework 4.5.2 silently via PowerShell
       win_shell: |
-        Start-Process -Wait -FilePath 'C:\temp\7z_installer.exe' -ArgumentList '/S'
-      args:
-        executable: powershell.exe
-# Este playbook descargara el instalador de "7Zip" y luego lo instalara a traves de Powershell directamente de manera "silenciosa".        
+        Start-Process -Wait -FilePath "C:\temp\NDP452-KB2901907-x86-x64-AllOS-ENU.exe" -ArgumentList '/S'
+
+    - name: Remove .NET installer
+      win_file:
+        path: C:\temp\NDP452-KB2901907-x86-x64-AllOS-ENU.exe
+        state: absent
