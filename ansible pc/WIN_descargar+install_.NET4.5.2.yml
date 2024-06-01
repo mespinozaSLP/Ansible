@@ -13,9 +13,8 @@
         dest: C:\temp
 
     - name: Install .NET Framework 4.5.2 silently via PowerShell
-      win_powershell:
-        script: |
-          Start-Process -FilePath "C:\temp\NDP452-KB2901907-x86-x64-AllOS-ENU.exe" -ArgumentList "/quiet", "/norestart" -NoNewWindow -Wait
+      win_shell: |
+        Start-Process -Wait -FilePath "C:\temp\NDP452-KB2901907-x86-x64-AllOS-ENU.exe" -ArgumentList '/S'
 
     - name: Remove .NET installer
       win_file:
