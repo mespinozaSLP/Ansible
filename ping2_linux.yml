@@ -1,7 +1,0 @@
----
-- name: Hacer ping a servidores Linux
-  hosts: 192.168.117.133
-  gather_facts: true
-  tasks:
-    - name: Verificar conectividad con ping
-      ping:
