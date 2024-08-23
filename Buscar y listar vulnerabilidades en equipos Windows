@@ -1,0 +1,35 @@
+---
+- name: Buscar y listar vulnerabilidades en equipos Windows
+  hosts: win
+  gather_facts: no
+  tasks:
+
+    - name: Obtener lista de actualizaciones de seguridad instaladas
+      win_updates:
+        category_names:
+          - SecurityUpdates
+        state: searched
+      register: updates
+
+    - name: Listar actualizaciones de seguridad instaladas
+      win_updates:
+        category_names:
+          - SecurityUpdates
+        state: installed
+      register: installed_updates
+
+    - name: Crear archivo de log de vulnerabilidades
+      win_lineinfile:
+        path: 'C:\Users\{{ ansible_user }}\Desktop\vulnerabilities_log.txt'
+        line: "{{ item.title }}"
+        create: yes
+      loop: "{{ updates.updates }}"
+      when: updates.updates is defined
+
+    - name: Agregar lista de actualizaciones instaladas al archivo de log
+      win_lineinfile:
+        path: 'C:\Users\{{ ansible_user }}\Desktop\vulnerabilities_log.txt'
+        line: "{{ item.title }}"
+        create: yes
+      loop: "{{ installed_updates.updates }}"
+      when: installed_updates.updates is defined
